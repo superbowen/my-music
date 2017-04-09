@@ -8,7 +8,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    // playList: [],
+    history: localStorage.history ? JSON.parse(localStorage.history) : [],
     playing: false,
     searchResult: [],
     selectedSong: {
@@ -39,9 +39,6 @@ const store = new Vuex.Store({
     }
   },
   mutations: {
-    // initAudio(state, src) {
-    //   state.audio.src = src
-    // },
     initList(state) {
       getHotSongs().then(res => {
         let list = res.body.songlist
@@ -63,6 +60,11 @@ const store = new Vuex.Store({
       state.audio.src = getSongSrc(song.songid)
       state.audio.play()
       state.playing = true
+      state.history.unshift(song)
+      if (state.history.length > 10) {
+        state.history.splice(10)
+      }
+      localStorage.history = JSON.stringify(state.history)
     },
     togglePlaying(state) {
       if (state.playing) {
@@ -72,6 +74,10 @@ const store = new Vuex.Store({
         state.audio.play()
         state.playing = true
       }
+    },
+    clear_history(state) {
+      localStorage.clear()
+      state.history = []
     }
   }
 })
