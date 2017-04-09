@@ -45,6 +45,8 @@
 </script>
 
 <style lang='stylus' rel='stylesheet/stylus' scoped>
+
+
   .song-list
     padding: 0 1.5em
     color: gray
