@@ -40,6 +40,7 @@ const store = new Vuex.Store({
   },
   mutations: {
     initList(state) {
+      if (state.searchResult.length) return
       getHotSongs().then(res => {
         let list = res.body.songlist
         console.log(list)

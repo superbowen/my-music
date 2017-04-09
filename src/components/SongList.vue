@@ -5,6 +5,7 @@
       <span class="title">{{song.songname}}</span>
       <span class="singer">{{song.singer[0].name}}</span>
     </div>
+    <div class="tip" v-if="songs.length===0">暂无歌曲信息...</div>
   </div>
 </template>
 
@@ -46,10 +47,11 @@
 
 <style lang='stylus' rel='stylesheet/stylus' scoped>
 
-
   .song-list
     padding: 0 1.5em
     color: gray
+    .tip
+      line-height: 4em
     .song
       line-height: 4em
       border-bottom 1px solid #dadada

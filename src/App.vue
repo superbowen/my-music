@@ -7,9 +7,11 @@
         <mu-bottom-nav-item value="list" title="List" icon="list"/>
       </mu-bottom-nav>
     </mu-paper>
+
     <keep-alive>
       <router-view style="margin-top: 55px;z-index: 100"></router-view>
     </keep-alive>
+
   </div>
 </template>
 
@@ -34,9 +36,11 @@
 </script>
 
 <style>
+
   #app {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
   }
+
 </style>
