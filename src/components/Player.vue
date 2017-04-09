@@ -48,7 +48,8 @@
       position: absolute
       top: 100px
       left: 50%
-      margin-left: -105px;
+      width: 209px
+      margin-left: -(@width / 2);
       .album
         position: absolute
         top: 39px

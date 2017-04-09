@@ -39,4 +39,7 @@
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
   }
+  ::-webkit-scrollbar{
+    display: none;
+  }
 </style>
