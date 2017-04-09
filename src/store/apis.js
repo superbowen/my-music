@@ -45,6 +45,20 @@ const Api = {
       }
     }
   },
+  // search2: {
+  //   method: 'POST',
+  //   url() {
+  //     return 'http://music.163.com/api/search/get'
+  //   },
+  //   body(name, limit = 3, offset = 0, type = 1) {
+  //     return ({
+  //       s: name,
+  //       limit,
+  //       offset,
+  //       type
+  //     })
+  //   }
+  // },
   lyric: {
     url: 'https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric.fcg',
     params: (id) => {
@@ -69,6 +83,12 @@ export function search(word) {
   // })
   return p
 }
+// export function search2(word) {
+//   let p = Vue.http.post(Api.search2.url, {
+//     params: Api.search2.body(word)
+//   })
+//   return p
+// }
 export function fetchSongInfo(songmid) {
   let p = Vue.http.get(Api.song_info.url, {params: Api.song_info.params(songmid)})
   return p
@@ -82,4 +102,7 @@ export function fetchLyirc(songid) {
     params: Api.lyric.params(songid), jsonp: 'callback'
   })
   return p
+}
+export function getSongSrc(songid) {
+  return `http://ws.stream.qqmusic.qq.com/${songid}.m4a?fromtag=46`
 }

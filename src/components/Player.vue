@@ -1,6 +1,6 @@
 <template>
   <div class="player">
-    <div class="album-wrapper rotating">
+    <div class="album-wrapper rotating" ref="album">
       <img :src="albumImgUrl" class="album" width="132" height="132">
       <img src="../styles/img/border.png" class="border-img" width="209" height="209">
     </div>
@@ -22,11 +22,22 @@
       },
       albumImgUrl() {
         return `http://imgcache.qq.com/music/photo/album_300/${this.song.albumid % 100}/300_albumpic_${this.song.albumid}_0.jpg`
+      },
+      playing() {
+        return this.$store.state.playing
       }
     },
-    methods: {
-      fetchData() {
-        this.$store.dispatch('FETCH_SONG_INFO', this.song.songmid)
+    mounted() {
+      this.$refs.album.style.animationPlayState = 'paused'
+      this.$store.commit('init', 'http://ws.stream.qqmusic.qq.com/200790315.m4a?fromtag=46')
+    },
+    watch: {
+      'playing'() {
+        if (this.playing) {
+          this.$refs.album.style.animationPlayState = 'running'
+        } else {
+          this.$refs.album.style.animationPlayState = 'paused'
+        }
       }
     },
     components: {

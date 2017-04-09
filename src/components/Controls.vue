@@ -1,6 +1,6 @@
 <template>
   <div class="controls">
-    <div class="control-button">
+    <div class="control-button" @click="togglePlaying">
       <i class="material-icons">{{playing?'pause_circle_outline':'play_circle_outline'}}</i>
     </div>
     <!--<mu-content-block>-->
@@ -12,6 +12,7 @@
         <!--<span class="totalTime">{totalTime}}</span>-->
       <!--</mu-flexbox>-->
     <!--</mu-content-block>-->
+    <!--<audio :src='songSrc' controls="controls" autoplay="autoplay">你的浏览器不支持audio标签~</audio>-->
   </div>
 </template>
 
@@ -20,6 +21,14 @@
     computed: {
       playing() {
         return this.$store.state.playing
+      },
+      song() {
+        return this.$store.state.selectedSong
+      }
+    },
+    methods: {
+      togglePlaying() {
+        this.$store.commit('togglePlaying')
       }
     }
   }
@@ -33,5 +42,4 @@
     transform: translateX(-50%)
     .control-button
       transform: scale(2.0)
-      width: 30px
 </style>
