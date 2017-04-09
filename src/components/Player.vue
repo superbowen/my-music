@@ -27,10 +27,6 @@
         return this.$store.state.playing
       }
     },
-    mounted() {
-      this.$refs.album.style.animationPlayState = 'paused'
-      this.$store.commit('init', 'http://ws.stream.qqmusic.qq.com/200790315.m4a?fromtag=46')
-    },
     watch: {
       'playing'() {
         if (this.playing) {
@@ -64,6 +60,7 @@
       left: 50%
       transform: translateX(-50%)
       text-align: center
+      width: 100%
       .name
         font-size: 1.5em
       .singer

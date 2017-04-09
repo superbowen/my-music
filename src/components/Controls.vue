@@ -37,7 +37,7 @@
 <style lang='stylus' rel='stylesheet/stylus'>
   .controls
     position: absolute
-    top: 440px
+    top: 445px
     left: 50%
     transform: translateX(-50%)
     .control-button

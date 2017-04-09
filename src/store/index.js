@@ -3,21 +3,19 @@
  */
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {search, fetchAlbum, fetchLyirc, fetchSongInfo, getSongSrc} from './apis'
+import {search, fetchAlbum, fetchLyirc, fetchSongInfo, getSongSrc, getHotSongs} from './apis'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
     // playList: [],
     playing: false,
-    Songs: [],
+    searchResult: [],
     selectedSong: {
-      albumid: 1656856,
-      songid: 200790315,
-      songmid: '003TLWoN0gQnP5',
-      songname: '成都',
+      albumid: 1456626,
+      songname: 'PLEASE SELECT A SONG',
       singer: [{
-        name: '赵雷'
+        name: 'to tell me which to play!!!'
       }]
     },
     audio: new Audio()
@@ -25,8 +23,7 @@ const store = new Vuex.Store({
   getters: {},
   actions: {
     SEARCH ({commit}, word) {
-      let p = search(word)
-      return p
+      commit('_search', word)
     },
     FETCH_ALBUM(context, albummid) {
       let p = fetchAlbum(albummid)
@@ -42,8 +39,24 @@ const store = new Vuex.Store({
     }
   },
   mutations: {
-    init(state, src) {
-      state.audio.src = src
+    // initAudio(state, src) {
+    //   state.audio.src = src
+    // },
+    initList(state) {
+      getHotSongs().then(res => {
+        let list = res.body.songlist
+        console.log(list)
+        for (let i = 0; i < list.length; i++) {
+          state.searchResult.push(list[i].data)
+        }
+      })
+    },
+    _search(state, word) {
+      let p = search(word)
+      p.then(res => {
+        state.searchResult = res.body.data.song.list
+        console.log(state.searchResult)
+      })
     },
     selectSong(state, song) {
       state.selectedSong = song

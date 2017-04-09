@@ -29,17 +29,21 @@
   export default {
     data () {
       return {
-        Songs: [],
         word: ''
+      }
+    },
+    computed: {
+      Songs() {
+        return this.$store.state.searchResult
       }
     },
     methods: {
       search () {
-        this.$store.dispatch('SEARCH', this.word).then(res => {
-          this.Songs = res.body.data.song.list
-          console.log(this.Songs)
-        })
+        this.$store.dispatch('SEARCH', this.word)
       }
+    },
+    mounted() {
+      this.$store.commit('initList')
     },
     components: {
       songList

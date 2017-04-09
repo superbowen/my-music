@@ -68,6 +68,30 @@ const Api = {
         songtype: 0
       }
     }
+  },
+  hotSongs: {
+    url: 'https://c.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?',
+    params() {
+      return {
+        tpl: 3,
+        page: 'detail',
+        date: '2017_15',
+        topid: 108,
+        type: 'global',
+        song_begin: 0,
+        song_num: 15,
+        g_tk: 5381,
+        jsonpCallback: 'MusicJsonCallbacktoplist',
+        loginUin: 0,
+        hostUin: 0,
+        format: 'jsonp',
+        inCharset: 'utf8',
+        outCharset: 'utf-8',
+        notice: 0,
+        platform: 'yqq',
+        needNewCode: 0
+      }
+    }
   }
 }
 export function search(word) {
@@ -105,4 +129,8 @@ export function fetchLyirc(songid) {
 }
 export function getSongSrc(songid) {
   return `http://ws.stream.qqmusic.qq.com/${songid}.m4a?fromtag=46`
+}
+export function getHotSongs() {
+  let p = Vue.http.jsonp(Api.hotSongs.url, {params: Api.hotSongs.params(), jsonp: 'jsonpCallback'})
+  return p
 }
