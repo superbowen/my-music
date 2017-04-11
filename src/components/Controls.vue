@@ -5,11 +5,11 @@
     </div>
     <mu-content-block>
       <mu-flexbox>
-        <span class="cur-time">{{audio.currentTime | formatTime}}</span>
+        <span class="cur-time">{{currentTime | formatTime}}</span>
         <mu-flexbox-item class="flex-slider">
-          <mu-slider :max="audio.duration" :value="audio.currentTime" class="slider" @change="dragToTime"></mu-slider>
+          <mu-slider :max="totalTime" :value="currentTime" class="slider" @change="dragToTime"></mu-slider>
         </mu-flexbox-item>
-        <span class="totalTime">{{audio.duration?audio.duration:0 | formatTime}}</span>
+        <span class="totalTime">{{totalTime | formatTime}}</span>
       </mu-flexbox>
     </mu-content-block>
   </div>
@@ -22,12 +22,18 @@
       ...mapState([
         'audio', 'playing'
       ])
-//      ...mapGetters([
-//        'currentTime'
-//      ])
-//      currentTime() {
-//        return this.$store.getters.currentTime
-//      }
+    },
+    data() {
+      return {
+        currentTime: 0,
+        totalTime: 0
+      }
+    },
+    mounted() {
+      setInterval(() => {
+        this.currentTime = this.audio.currentTime
+        this.totalTime = this.audio.duration
+      }, 1000)
     },
     methods: {
       togglePlaying() {
