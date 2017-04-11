@@ -67,7 +67,7 @@
         overflow: hidden
         text-overflow: ellipsis
       .singer
-        font-size: 0.6em
+        font-size: 0.8em
         margin-left: .7em;
         white-space: nowrap
         overflow: hidden

@@ -20,7 +20,11 @@ const store = new Vuex.Store({
     },
     audio: new Audio()
   },
-  getters: {},
+  // getters: {
+  //   currentTime() {
+  //     return this.state.audio.currentTime
+  //   }
+  // },
   actions: {
     SEARCH ({commit}, word) {
       commit('_search', word)
@@ -59,6 +63,7 @@ const store = new Vuex.Store({
     selectSong(state, song) {
       state.selectedSong = song
       state.audio.src = getSongSrc(song.songid)
+      state.audio.loop = true
       state.audio.play()
       state.playing = true
       state.history.unshift(song)
