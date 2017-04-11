@@ -84,6 +84,9 @@ const store = new Vuex.Store({
     clear_history(state) {
       localStorage.clear()
       state.history = []
+    },
+    dragPlay(state, value) {
+      state.audio.currentTime = value
     }
   }
 })

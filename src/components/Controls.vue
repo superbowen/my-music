@@ -7,7 +7,7 @@
       <mu-flexbox>
         <span class="cur-time">{{audio.currentTime | formatTime}}</span>
         <mu-flexbox-item class="flex-slider">
-          <mu-slider :max="audio.duration" :value="audio.currentTime" class="slider"></mu-slider>
+          <mu-slider :max="audio.duration" :value="audio.currentTime" class="slider" @change="dragToTime"></mu-slider>
         </mu-flexbox-item>
         <span class="totalTime">{{audio.duration?audio.duration:0 | formatTime}}</span>
       </mu-flexbox>
@@ -32,6 +32,9 @@
     methods: {
       togglePlaying() {
         this.$store.commit('togglePlaying')
+      },
+      dragToTime(value) {
+        this.$store.commit('dragPlay', value)
       }
     },
     filters: {
