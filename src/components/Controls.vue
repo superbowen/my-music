@@ -33,7 +33,7 @@
       setInterval(() => {
         this.currentTime = this.audio.currentTime
         this.totalTime = this.audio.duration
-      }, 1000)
+      }, 250)
     },
     methods: {
       togglePlaying() {

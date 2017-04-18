@@ -64,6 +64,7 @@ const store = new Vuex.Store({
       state.selectedSong = song
       state.audio.src = getSongSrc(song.songid)
       state.audio.loop = true
+      state.audio.volume = 0.6
       state.audio.play()
       state.playing = true
       state.history.unshift(song)
