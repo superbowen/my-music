@@ -59,7 +59,7 @@
     color: #fff
     overflow: auto
     .mu-banner
-      background-color: #03a9f4;
+      background-color: #2196f3;
       z-index: 100;
       padding: 10px 30px 20px 30px
       .logo
@@ -69,7 +69,7 @@
         text-align: center;
         background-color: #fff;
         margin: 0 auto;
-        color: #03a9f4;
+        color: #2196f3;
         font-size: 50px;
         border-radius: 50%;
         margin-bottom: 16px;

@@ -8,9 +8,9 @@
       </mu-bottom-nav>
     </mu-paper>
 
-    <keep-alive>
+    <transition name="fade" mode="out-in">
       <router-view style="margin-top: 55px;z-index: 100"></router-view>
-    </keep-alive>
+    </transition>
 
   </div>
 </template>
@@ -36,6 +36,12 @@
 </script>
 
 <style>
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .3s
+  }
+  .fade-enter, .fade-leave-active {
+    opacity: 0
+  }
 
   #app {
     -webkit-font-smoothing: antialiased;
